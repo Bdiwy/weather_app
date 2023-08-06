@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render ,redirect
 import json
 import urllib.request
 # Create your views here.
@@ -16,5 +16,9 @@ def index(request):
             'humidity':str(json_data['main']['humidity']),
 
         }
-
-    return render(request, 'index.html',data)    
+    else:
+        city = ''   
+        data={}
+        return redirect('index')
+ 
+    return render(request, 'index.html',{"data":data , "city":city})    
